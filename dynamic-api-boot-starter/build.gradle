@@ -45,13 +45,13 @@ publishing {
             pom {
                 name = 'Dynamic Api Spring Boot Starter'
                 description = '简化Controller层,暴露Service为可访问api'
-                url = 'https://github.com/ZhaoRd/mapstruct-spring-plus'
+                url = 'https://github.com/ZhaoRd/dynamic-api.git'
                 packaging = 'jar'
 
                 licenses {
                     license {
                         name = 'MIT License'
-                        url = 'https://github.com/ZhaoRd/mapstruct-spring-plus/blob/main/LICENSE'
+                        url = 'https://github.com/ZhaoRd/dynamic-api/blob/main/LICENSE'
                     }
                 }
                 developers {
@@ -61,9 +61,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:https://github.com/ZhaoRd/mapstruct-spring-plus.git'
-                    developerConnection = 'scm:git:https://github.com/ZhaoRd/mapstruct-spring-plus.git'
-                    url = 'https://github.com/ZhaoRd/mapstruct-spring-plus'
+                    connection = 'scm:git:https://github.com/ZhaoRd/dynamic-api.git'
+                    developerConnection = 'scm:git:https://github.com/ZhaoRd/dynamic-api.git'
+                    url = 'https://github.com/ZhaoRd/dynamic-api.git'
                 }
             }
         }

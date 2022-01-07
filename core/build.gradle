@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+jar{
+    archiveFileName = 'dynamic-api-core.jar'
+}
+
+dependencies {
+    implementation 'org.springframework:spring-webmvc:5.3.14'
+    implementation 'org.springframework:spring-context:5.3.14'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.2.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+}
+
+test {
+    useJUnitPlatform()
+}

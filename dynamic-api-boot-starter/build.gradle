@@ -1,0 +1,87 @@
+plugins {
+    id 'java'
+    id 'signing'
+    id 'maven-publish'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+jar{
+    archiveFileName = 'dynamic-api-boot-starter.jar'
+}
+dependencies {
+
+    api project(":dynamic-api-core")
+
+    compileOnly "org.springframework.boot:spring-boot-configuration-processor:2.6.2"
+
+    implementation "org.springframework.boot:spring-boot-starter:2.6.2"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'dynamic-api-boot-starter'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Dynamic Api Spring Boot Starter'
+                description = '简化Controller层,暴露Service为可访问api'
+                url = 'https://github.com/ZhaoRd/mapstruct-spring-plus'
+                packaging = 'jar'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/ZhaoRd/mapstruct-spring-plus/blob/main/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'zhaorende'
+                        email = '1260825783@qq.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/ZhaoRd/mapstruct-spring-plus.git'
+                    developerConnection = 'scm:git:https://github.com/ZhaoRd/mapstruct-spring-plus.git'
+                    url = 'https://github.com/ZhaoRd/mapstruct-spring-plus'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

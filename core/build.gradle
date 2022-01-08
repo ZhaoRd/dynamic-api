@@ -6,8 +6,8 @@ plugins {
 
 
 java {
-    withJavadocJar()
     withSourcesJar()
+    withJavadocJar()
 }
 
 jar{
@@ -38,7 +38,7 @@ test {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = 'dynamic-api-boot-starter'
+            artifactId = 'dynamic-api-core'
             from components.java
             versionMapping {
                 usage('java-api') {

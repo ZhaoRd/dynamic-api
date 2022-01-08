@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author zhao rende
+ */
 @Data
 public class DynamicApiMethodInfo {
     private String methodName;

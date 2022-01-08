@@ -6,6 +6,9 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author zhao rende
+ */
 @Data
 public class DynamicApiControllerInfo {
     @Getter

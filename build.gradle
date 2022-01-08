@@ -1,5 +1,16 @@
+plugins {
+    id 'idea'
+    id 'java-library'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'signing'
+    id "com.github.ben-manes.versions" version "0.36.0"
+}
+
 
 allprojects {
+
+
     repositories {
         mavenLocal()
         gradlePluginPortal()
@@ -13,11 +24,26 @@ allprojects {
     }
 }
 
+
+
 subprojects{
     group = 'io.github.zhaord'
-    version = '0.0.1-SNAPSHOT'
+    version = '0.0.2'
+    //version = '0.0.2.SNAPSHOT'
 
     apply plugin:"java-library"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+
+}
+
+
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
 }
 
 

@@ -9,6 +9,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author zhao rende
+ */
 @Component
 @RequiredArgsConstructor
 public class DynamicControllerRegister implements InitializingBean {

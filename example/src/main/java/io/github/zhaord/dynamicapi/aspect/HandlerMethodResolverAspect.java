@@ -56,6 +56,7 @@ public class HandlerMethodResolverAspect {
         return proceed;
     }
 
+    // DynamicApi 解析完成的方法参数
     public static class DynamicResolvedMethodParam extends ResolvedMethodParameter{
         private final ResolvedMethodParameter parameter;
         public DynamicResolvedMethodParam(ResolvedMethodParameter resolvedMethodParameter) {
@@ -71,6 +72,7 @@ public class HandlerMethodResolverAspect {
                 if(parameter.hasParameterAnnotation(annotation)){
                     return true;
                 }
+                // 参数类型是 是指定包下的bean
                 if(parameter.getParameterType().getTypeName().startsWith("io.github.zhaord.dynamicapi")){
                     return true;
                 }

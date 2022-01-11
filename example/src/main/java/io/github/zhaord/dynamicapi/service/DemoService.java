@@ -3,6 +3,7 @@ package io.github.zhaord.dynamicapi.service;
 
 import io.github.zhaord.dynamicapi.annotation.DynamicApi;
 import lombok.Data;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @DynamicApi
 public class DemoService {
@@ -29,7 +30,7 @@ public class DemoService {
         return vo;
     }
 
-    public AddNameVo addName(NameDto input){
+    public AddNameVo addName(@RequestBody NameDto input){
         AddNameVo vo = new AddNameVo();
         vo.setResult("add success "+ input.getName());
         return vo;

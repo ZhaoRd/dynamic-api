@@ -2,28 +2,38 @@ package io.github.zhaord.dynamicapi.service;
 
 import io.github.zhaord.dynamicapi.annotation.DynamicApi;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author zhaord
  */
 @DynamicApi
 public class UserService {
-    public String getHello(String name){
-        return "hello,"+name;
+    public List<UserDto> getList(String name){
+        return Collections.singletonList(UserDto.builder()
+                        .name("zh,"+name)
+                .build());
     }
 
-    public String sayHello(String name){
-        return "say hello,"+name;
+    public UserDto getUser(Long id){
+        return UserDto.builder()
+                .name("id="+id)
+                .build();
     }
 
-    public String saveName(String name){
-        return "save,"+name;
+    public UserDto insertUser(UserDto user){
+        user.setId(1000L);
+        return user;
     }
 
-    public String updateName(String name){
-        return "update,"+name;
+    public UserDto updateUser(UserDto user){
+        user.setName(user.getName()+"-update");
+        return user;
     }
 
-    public String removeName(String name){
-        return "remove,"+name;
+    public Long removeUser(Long id){
+        return id;
     }
+
 }

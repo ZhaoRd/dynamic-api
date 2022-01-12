@@ -1,7 +1,10 @@
 rootProject.name = 'dynamic-api'
 include 'core'
 findProject(':core')?.name = 'dynamic-api-core'
-include 'example'
-findProject(':example')?.name = 'dynamic-api-example'
 include 'dynamic-api-boot-starter'
+// include 'example'
+// findProject(':example')?.name = 'dynamic-api-example'
+
+include 'example:dynamic-api-demo'
+findProject(':example:dynamic-api-demo')?.name = 'dynamic-api-demo'
 

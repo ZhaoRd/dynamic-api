@@ -6,6 +6,7 @@ import io.github.zhaord.dynamicapi.annotation.DontApiResultWrapper;
 import lombok.Data;
 import org.springframework.web.bind.annotation.RequestBody;
 
+@DontApiResultWrapper
 @DynamicApi
 public class DemoService {
 

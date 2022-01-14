@@ -7,4 +7,6 @@ include 'dynamic-api-boot-starter'
 
 include 'example:dynamic-api-demo'
 findProject(':example:dynamic-api-demo')?.name = 'dynamic-api-demo'
+include 'example:dynamicapi-auth-demo'
+findProject(':example:dynamicapi-auth-demo')?.name = 'dynamicapi-auth-demo'
 

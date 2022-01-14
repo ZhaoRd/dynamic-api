@@ -4,10 +4,13 @@ import io.github.zhaord.dynamicapi.annotation.DynamicApi;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 
+import org.springframework.validation.annotation.ValidationAnnotationUtils;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 /**
@@ -34,7 +37,8 @@ public class DynamicControllerHandlerMethodArgumentResolver extends RequestRespo
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        if (parameter.getMethod().getName().toUpperCase().startsWith("GET")){
+        if (parameter.getMethod().getName().startsWith("get")||
+        parameter.getMethod().getName().startsWith("find")){
             return super.supportsParameter(parameter);
         }
 
@@ -43,6 +47,23 @@ public class DynamicControllerHandlerMethodArgumentResolver extends RequestRespo
             return true;
         }
         return super.supportsParameter(parameter);
+    }
+
+    /**
+     * 重写参数校验逻辑，如果使用了DynamicApi，则强制验证
+     * @param binder
+     * @param parameter
+     */
+    @Override
+    protected void validateIfApplicable(WebDataBinder binder, MethodParameter parameter) {
+        Class<?> declaringClass = parameter.getMember().getDeclaringClass();
+        if (declaringClass.getAnnotation(DynamicApi.class)==null){
+            // 没有定义DynamicApi，走原有校验
+            super.validateIfApplicable(binder,parameter);
+            return;
+        }
+        binder.validate();
+
     }
 
 }

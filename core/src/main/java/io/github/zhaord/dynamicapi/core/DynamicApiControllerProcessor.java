@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,13 +23,13 @@ public class DynamicApiControllerProcessor
     @Override
     public Object postProcessAfterInitialization(final Object bean, final String beanName) throws BeansException {
 
-        boolean hasDynamicApiAnnotation = bean.getClass().getAnnotation(DynamicApi.class)!=null;
-
-        if (!hasDynamicApiAnnotation){
+        DynamicApi anno = AnnotationUtils.findAnnotation(bean.getClass(), DynamicApi.class);;
+        if (anno==null){
             return bean;
         }
         this.dynamicApiManager.register(DynamicApiHelper.buildControllerInfo(bean,beanName));
 
         return bean;
     }
+
 }

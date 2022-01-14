@@ -28,8 +28,7 @@ allprojects {
 
 subprojects{
     group = 'io.github.zhaord'
-    version = '0.2'
-    //version = '0.0.2.SNAPSHOT'
+    version = '0.3'
 
     apply plugin:"java-library"
 

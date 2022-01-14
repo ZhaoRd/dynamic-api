@@ -3,6 +3,7 @@ package io.github.zhaord.dynamicapi.core;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
@@ -15,8 +16,8 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class DynamicControllerRegister implements InitializingBean {
-
     private final DynamicApiManager dynamicApiManager;
+    // 原有的逻辑，requestMappingHandlerMapping 是注入到 DispatcherServletd中
     private final RequestMappingHandlerMapping requestMappingHandlerMapping;
     private RequestMappingInfo.BuilderConfiguration config =  new RequestMappingInfo.BuilderConfiguration();
 
